@@ -10,11 +10,11 @@ const port = 10000;
 // console.log(process.env.CONNECTION_STRING)
 app.use(express.json());
 
-app.use('/', (req, res)=>{
-    res.json({
-        message: 'Hello World',
-    })
-})
+// app.use('/', (req, res)=>{
+//     res.json({
+//         message: 'Hello World',
+//     })
+// })
 app.use('/user', userRoutes);
 app.use('/article', articleRoutes);
 mongoose.connect(process.env.CONNECTION_STRING)
