@@ -29,9 +29,49 @@ const get = async (req, res) => {
     }
 };
 
+const getArticle = async (req, res) => {
+    const article = await articleModel.findById(req.params.id);
+  res.send(article);
+}
+
+const likeArticle = async (req, res) => {
+    try {
+        const article = await articleModel.findById(req.params.id);
+        if (!article) {
+            return res.status(404).json({ success: false, message: 'Article not found' });
+        }
+
+        article.likes += 1;
+        await article.save();
+        res.json({ success: true, message: 'Article liked successfully', likes: article.likes });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
+
+const viewArticle = async (req, res) => {
+    try {
+        const article = await articleModel.findById(req.params.id);
+        if (!article) {
+            return res.status(404).json({ success: false, message: 'Article not found' });
+        }
+
+        article.views += 1;
+        await article.save();
+        res.json({ success: true, message: 'Article viewed', views: article.views });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
+
 const articleController = {
     create,
-    get
+    get,
+    getArticle,
+    likeArticle,
+    viewArticle
 }
 
 module.exports = articleController;
