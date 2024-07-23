@@ -3,8 +3,17 @@
 
 # End Poits
 
-### POST  /user/register:  To Create User 
+### POST  /user/register  To Create User 
 
-### POST /article/creat: To create article
+### POST /article/creat To create article
 
-### POST /article/get: To list all the articles
+### GET /article/get To list all the articles
+
+### GET /article/get/:id To list single article
+
+### POST /article/:id/like To Like an article
+
+### POST /article/:id/view To View an article
+
+## Tech Stacks Used: Node.js , MongoDB
+ 
